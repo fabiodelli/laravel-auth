@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth','verified'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('profile.edit');
+    Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('projects', ProjectController::class)->parameters(['projects' => 'projects:slug']);
 });
 
 require __DIR__.'/auth.php';
