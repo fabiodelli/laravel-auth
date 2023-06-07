@@ -31,3 +31,5 @@
     <button type="submit" class="btn btn-dark">Save</button>
 
 </form>
+
+@endsection
